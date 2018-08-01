@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_25054_reassign_a.reAssignApprover</api_name>
+        <client_callable>true</client_callable>
+        <description/>
+        <name>reAssignApprover</name>
+        <script><![CDATA[var reAssignApprover = Class.create();
+reAssignApprover.prototype = Object.extendsObject(global.AbstractAjaxProcessor, {
+	
+	
+	reAssign: function(){
+	var user = this.getParameter('sysparm_user');
+		var id = this.getParameter('sysparm_id');
+		var gr = new GlideRecord('sysapproval_approver');
+		gr.get(id);
+		gr.query();
+		while(gr.next()){
+			gr.setValue('approver',user);
+			gr.update();
+		}
+		gs.addInfoMessage('This approval record has been re-assigned');
+	
+	
+},
+
+    type: 'reAssignApprover'
+});]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-08-01 17:17:20</sys_created_on>
+        <sys_id>02a7a3d7db63130034cbda75ca96196f</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>reAssignApprover</sys_name>
+        <sys_package display_value="reassign approval" source="x_25054_reassign_a">0b9a8f17db23130034cbda75ca9619da</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="reassign approval">0b9a8f17db23130034cbda75ca9619da</sys_scope>
+        <sys_update_name>sys_script_include_02a7a3d7db63130034cbda75ca96196f</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-08-01 17:21:56</sys_updated_on>
+    </sys_script_include>
+</record_update>
